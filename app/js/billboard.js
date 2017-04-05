@@ -5,16 +5,18 @@ var GOOD = 'Good';
 var GOOD_COLOR = '#ff0';
 var MISS = 'Miss :(';
 var MISS_COLOR = '#f00';
+var offset_X;
 
-var Billboard = function Billboard() {
+var Billboard = function Billboard(offset_X) {
 	this.greatText = createText(GREAT, GREAT_COLOR);
 	this.goodText = createText(GOOD, GOOD_COLOR);
 	this.missText = createText(MISS, MISS_COLOR);
+	offset_X = offset_X;
 
 	function createText(string, color) {
 		var style = TEXT_STYLE;
-		style.fill = color; 
-		var text = game.add.text(game.world.centerX, 100, string, style);
+		style.fill = color;
+		var text = game.add.text(offset_X, 400, string, style);
 		text.visible = false;
 		text.anchor.set(0.5);
 		return text;
@@ -28,7 +30,7 @@ function getPrototype() {
 		text.visible = true;
 		setTimeout(function(){
 			text.visible = false;
-		}, 500); 
+		}, 500);
 	}
 	return {
 		showGreat:function(){
@@ -37,7 +39,7 @@ function getPrototype() {
 		},
 		showGood:function(){
 			this.hideAll();
-			show(this.goodText); 
+			show(this.goodText);
 		},
 		showMiss:function(){
 			this.hideAll();

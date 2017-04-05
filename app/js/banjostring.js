@@ -8,8 +8,9 @@ var BanjoString = function BanjoString(index, key) {
 	this.key.onDown.add(this.pulse, this);
 	this.button = new Button(this);
 
-	function getPosition() {
-		return GAME_HEIGHT - ((STRING_OFFSET + STRING_HEIGHT) * parent.stringNumber)
+	function getPosition(stringNumber) {
+		var offset = (stringNumber/2 == 0)?STRING_OFFSET:STRING_OFFSET*3;
+		return GAME_WIDTH - ((STRING_OFFSET + STRING_HEIGHT) * stringNumber) - (Math.floor((stringNumber+1)/2)*150)
 	}
 }
 
