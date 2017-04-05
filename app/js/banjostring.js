@@ -2,12 +2,12 @@ var BanjoString = function BanjoString(index, key) {
 	var parent = this;
 	this.name = key;
 	this.stringNumber = index+1;
-	this.sprite = game.add.tileSprite(0, getPosition(this.stringNumber), GAME_WIDTH, STRING_HEIGHT, 'common_string');
+	this.sprite = game.add.tileSprite(getPosition(this.stringNumber), 0, STRING_HEIGHT, GAME_HEIGHT, 'common_string');
 	this.notes = new NotesHandler(this);
 	this.key = game.input.keyboard.addKey(key);
 	this.key.onDown.add(this.pulse, this);
 	this.button = new Button(this);
-	
+
 	function getPosition() {
 		return GAME_HEIGHT - ((STRING_OFFSET + STRING_HEIGHT) * parent.stringNumber)
 	}
@@ -30,12 +30,12 @@ BanjoString.prototype = {
 }
 
 var Button = function Button(string) {
-	this.sprite = game.add.sprite(20, string.sprite.y-4, 'button');
+	this.sprite = game.add.sprite(string.sprite.x-4, GAME_HEIGHT-20, 'button');
 	this.push = function(){
 		sprite = this.sprite;
 		startInterval();
 	}
-	
+
 	var timer;
 	var sprite;
 
@@ -58,8 +58,8 @@ Button.prototype = {
 	getCollisionArea:function()
 	{
 		return {
-			x:this.sprite.x,
-			width:this.sprite.width
+			y:this.sprite.y,
+			height:this.sprite.height
 		};
 	}
 }
