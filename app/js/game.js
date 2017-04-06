@@ -8,8 +8,9 @@ window.onload = function(){
 	var music;
 
 	function preload() {
-		game.load.image('common_string', 'assets/string.png');
-		game.load.spritesheet('button', 'assets/button.png', 16, 16, 2);
+		game.load.image('common_string', 'assets/blue.png', 85, 830);
+		game.load.spritesheet('button', 'assets/button.png', 82, 82, 2);
+		game.load.image('button_blue', 'assets/bluebeat.png', 82, 82);
 		game.load.audio('bgm', ['assets/audio/Something_Just_Lik.mp3']);
 	}
 
@@ -37,8 +38,8 @@ window.onload = function(){
 			});
 			strings.push(string);
 		}
-		for(var index=0; index<4; index++) {
-			billboard.push(new Billboard(GAME_WIDTH-200*index-200));
+		for(var index=0; index<5; index++) {
+			billboard.push(new Billboard(GAME_WIDTH-380*index-52-STRING_WIDTH));
 		}
 		game.time.events.loop(Phaser.Timer.SECOND, setNote, this);
 		music = game.add.audio('bgm');

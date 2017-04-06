@@ -13,7 +13,7 @@ NotesHandler.prototype = {
 			this.notes[i].move();
 		}
 		if (this.notes.length > 0)	{
-			if (this.notes[0].sprite.y > GAME_HEIGHT) {
+			if (this.notes[0].sprite.y > GAME_HEIGHT-300) {
 				this.onHit("MISS");
 				this.removeNote();
 			}
@@ -41,7 +41,7 @@ NotesHandler.prototype = {
 };
 
 var Note = function Note(string) {
-	this.sprite = game.add.sprite(string.sprite.x-4, 0 , 'button');
+	this.sprite = game.add.sprite(string.sprite.x+2, 0 , 'button_blue');
 }
 
 Note.prototype = {

@@ -2,15 +2,17 @@ var BanjoString = function BanjoString(index, key) {
 	var parent = this;
 	this.name = key;
 	this.stringNumber = index+1;
-	this.sprite = game.add.tileSprite(getPosition(this.stringNumber), 0, STRING_HEIGHT, GAME_HEIGHT, 'common_string');
+	this.sprite = game.add.sprite(getPosition(this.stringNumber), 0, 'common_string');
 	this.notes = new NotesHandler(this);
 	this.key = game.input.keyboard.addKey(key);
 	this.key.onDown.add(this.pulse, this);
 	this.button = new Button(this);
 
 	function getPosition(stringNumber) {
-		var offset = (stringNumber/2 == 0)?STRING_OFFSET:STRING_OFFSET*3;
-		return GAME_WIDTH - ((STRING_OFFSET + STRING_HEIGHT) * stringNumber) - (Math.floor((stringNumber+1)/2)*150)
+		// var offset = (stringNumber/2 == 0)?STRING_OFFSET:STRING_OFFSET*3;
+		// return GAME_WIDTH - ((STRING_OFFSET + STRING_WIDTH) * stringNumber) - (Math.floor((stringNumber+1)/2)*150)
+		var offset = Math.floor((stringNumber-1)/2)*214;
+		return GAME_WIDTH-52-(STRING_WIDTH * stringNumber)-offset;
 	}
 }
 
@@ -31,7 +33,7 @@ BanjoString.prototype = {
 }
 
 var Button = function Button(string) {
-	this.sprite = game.add.sprite(string.sprite.x-4, GAME_HEIGHT-20, 'button');
+	this.sprite = game.add.sprite(string.sprite.x+2, string.sprite.y+740, 'button');
 	this.push = function(){
 		sprite = this.sprite;
 		startInterval();
