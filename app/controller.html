@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.4.0.js"></script>
+    <script type="text/javascript">
+        // creation of a new AirConsole instance
+        var airconsole = new AirConsole();
+        // function to be executed every 3 seconds
+        function sendMessge(val) {
+            airconsole.message(AirConsole.SCREEN, val);
+        }
+    </script>
+    <style media="screen">
+      button{
+        float: left;
+        width: 50%;
+        height: 100%;
+      }
+    </style>
+</head>
+
+<body>
+    <button onclick="sendMessge('0')">Left</button>
+    <button onclick="sendMessge('1')">Right</button>
+</body>
+
+</html>

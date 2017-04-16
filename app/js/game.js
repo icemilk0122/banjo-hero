@@ -6,12 +6,71 @@ window.onload = function(){
 	var hud;
 	var billboard = [];
 	var music;
+	//airconsole
+	var deviceIds = [];
+	var airconsole = new AirConsole();
 
 	function preload() {
 		game.load.image('common_string', 'assets/blue.png', 85, 830);
 		game.load.spritesheet('button', 'assets/button.png', 82, 82, 2);
 		game.load.image('button_blue', 'assets/bluebeat.png', 82, 82);
 		game.load.audio('bgm', ['assets/audio/Something_Just_Lik.mp3']);
+	}
+
+	//airconsole
+	airconsole.onMessage = function(deviceId, data) {
+			// checking if the deviceId is already in deviceIds vector, and if it's not...
+			if (deviceIds.indexOf(deviceId) == -1) {
+					// pushing the device id
+					deviceIds.push(deviceId);
+			}
+			switch (deviceId) {
+				case 1:
+						console.log('1'+','+data);
+						if(data == '0')
+						{
+							strings[9].pulse();
+						}else {
+							strings[8].pulse();
+						}
+						break;
+				case 2:
+						console.log('2'+','+data);
+						if(data == '0')
+						{
+							strings[7].pulse();
+						}else {
+							strings[6].pulse();
+						}
+						break;
+				case 3:
+						console.log('3'+','+data);
+						if(data == '0')
+						{
+							strings[5].pulse();
+						}else {
+							strings[4].pulse();
+						}
+						break;
+				case 4:
+						console.log('4'+','+data);
+						if(data == '0')
+						{
+							strings[3].pulse();
+						}else {
+							strings[2].pulse();
+						}
+						break;
+				case 5:
+						console.log('5'+','+data);
+						if(data == '0')
+						{
+							strings[1].pulse();
+						}else {
+							strings[0].pulse();
+						}
+						break;
+			}
 	}
 
 	function create() {
@@ -43,7 +102,7 @@ window.onload = function(){
 		}
 		game.time.events.loop(Phaser.Timer.SECOND, setNote, this);
 		music = game.add.audio('bgm');
- 		music.play();
+ 		//music.play();
 	}
 
 	function update() {
